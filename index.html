@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Streaming</title>
+</head>
+<body>
+    <h1>Live Streaming Form</h1>
+    <form id="uploadForm">
+        <input type="file" name="video" required>
+        <input type="text" name="stream_key" placeholder="Stream Key" required>
+        <input type="text" name="platform" placeholder="Platform (YouTube/Facebook)" required>
+        <button type="submit">Start Streaming</button>
+    </form>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+
+            const response = await fetch('http://<ngrok-url>/api/upload-and-stream', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+            alert(result.status || result.error);
+        });
+    </script>
+</body>
+</html>
