@@ -21,7 +21,7 @@
             e.preventDefault();
             const formData = new FormData(form);
 
-            const response = await fetch('http://<ngrok-url>/api/upload-and-stream', {
+            const response = await fetch('http:/192.168.221.91:5000/api/upload-and-stream', {
                 method: 'POST',
                 body: formData
             });
